@@ -27,7 +27,8 @@ class Animal:
 
     def info(self):
         print(f'имя питомца: {self.name}, семейство питомца: {self.pet_type}, '
-              f'сытость питомца: [{ceil(self.hunger/10) * '⏹'}{'•' * (10 - ceil(self.hunger / 10))}/{10 * '⏹'}]' )
+              f'сытость питомца: [{ceil(self.hunger/10) * '⏹'}'
+              f'{'•' * (10 - ceil(self.hunger / 10))}/{10 * '⏹'}]' )
 
 
 class Cat(Animal):
@@ -49,6 +50,21 @@ def pet_choose():
     if ANIMALS == []: print("В вольере некого нет")
     else:
         for i in ANIMALS: print(i.name, end=' ')
+
+def method_execution(animal_choose, function):
+    for i in range(len(ANIMALS)):
+        if animal_choose == ANIMALS[i].name:
+            if function == 1:
+                ANIMALS[i].make_sound()
+            elif function == 2:
+                ANIMALS[i].info()
+            elif function == 3:
+                ANIMALS[i].feed()
+                print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger / 10) * '⏹'}'
+                      f'{'•' * (10 - ceil(ANIMALS[i].hunger / 10))}/{10 * '⏹'}]')
+            break
+        else:
+            print("Животное не найдено")
 
 
 ANIMALS = []
@@ -78,36 +94,21 @@ while True:
     elif player_choose == '2':
         pet_choose()
         animal_choose = input('\nВведите имя животного, о котором хотите узнать\n')
-        for i in range(len(ANIMALS)):
-            if animal_choose == ANIMALS[i].name:
-                ANIMALS[i].info()
-                break
-            else:
-                print("Животное не найдено")
+        method_execution(animal_choose, 2)
     elif player_choose == '3':
         pet_choose()
         animal_choose = input('\nВведите имя животного, которого хотите погладить\n')
-        for i in range(len(ANIMALS)):
-            if animal_choose == ANIMALS[i].name:
-                ANIMALS[i].make_sound()
-                break
-            else:
-                print("Животное не найдено")
+        method_execution(animal_choose, 1)
     elif player_choose == '4':
         pet_choose()
         animal_choose = input('\nВведите имя животного, которого хотите покормить\n')
-        for i in range(len(ANIMALS)):
-            if animal_choose == ANIMALS[i].name:
-                ANIMALS[i].feed()
-                print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger / 10) * '⏹'}{'•' * (10 - ceil(ANIMALS[i].hunger / 10))}/{10 * '⏹'}]')
-                break
-            else:
-                print("Животное не найдено")
+        method_execution(animal_choose, 3)
     elif player_choose == '5':
         for i in range(len(ANIMALS)):
             ANIMALS[i].starvation()
         for i in range(len(ANIMALS)):
-            print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger/10) * '⏹'}{'•' * (10 - ceil(ANIMALS[i].hunger / 10))}/{10 * '⏹'}]')
+            print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger/10) * '⏹'}'
+                  f'{'•' * (10 - ceil(ANIMALS[i].hunger / 10))}/{10 * '⏹'}]')
     else:
         break
 

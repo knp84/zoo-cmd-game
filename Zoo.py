@@ -27,7 +27,7 @@ class Animal:
 
     def info(self):
         print(f'имя питомца: {self.name}, семейство питомца: {self.pet_type}, '
-              f'сытость питомца: [{ceil(self.hunger/10) * '⏹'}/{10 * '⏹'}]' )
+              f'сытость питомца: [{ceil(self.hunger/10) * '⏹'}{'•' * (10 - ceil(self.hunger / 10))}/{10 * '⏹'}]' )
 
 
 class Cat(Animal):
@@ -99,7 +99,7 @@ while True:
         for i in range(len(ANIMALS)):
             if animal_choose == ANIMALS[i].name:
                 ANIMALS[i].feed()
-                print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger / 10) * '⏹'}/{10 * '⏹'}]')
+                print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger / 10) * '⏹'}{'•' * (10 - ceil(ANIMALS[i].hunger / 10))}/{10 * '⏹'}]')
                 break
             else:
                 print("Животное не найдено")
@@ -107,7 +107,7 @@ while True:
         for i in range(len(ANIMALS)):
             ANIMALS[i].starvation()
         for i in range(len(ANIMALS)):
-            print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger/10) * '⏹'}/{10 * '⏹'}]')
+            print(f'{ANIMALS[i].name}: [{ceil(ANIMALS[i].hunger/10) * '⏹'}{'•' * (10 - ceil(ANIMALS[i].hunger / 10))}/{10 * '⏹'}]')
     else:
         break
 
